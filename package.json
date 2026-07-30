@@ -1,0 +1,65 @@
+{
+  "name": "adeeb-meeting-agent",
+  "version": "1.0.0",
+  "description": "AI Powered Meeting Assistant",
+  "main": "electron/main.js",
+  "author": "Adeeb Technologies",
+  "license": "MIT",
+  "private": true,
+
+  "scripts": {
+    "frontend": "cd frontend && npm run dev",
+    "frontend-build": "cd frontend && npm run build",
+
+    "backend": "python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload",
+
+    "electron": "electron .",
+
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\" \"wait-on http://localhost:5173 && npm run electron\"",
+
+    "build": "npm run frontend-build",
+
+    "dist": "npm run build && electron-builder"
+  },
+
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  },
+
+  "devDependencies": {
+    "concurrently": "^10.0.4",
+    "cross-env": "^10.1.0",
+    "electron": "^43.2.0",
+    "electron-builder": "^26.15.3",
+    "wait-on": "^9.1.0"
+  },
+
+  "build": {
+    "appId": "com.adeeb.meetingagent",
+
+    "productName": "Adeeb Meeting Agent",
+
+    "directories": {
+      "output": "dist"
+    },
+
+    "files": [
+      "electron/**/*",
+      "frontend/dist/**/*",
+      "backend/**/*",
+      "requirements.txt",
+      "package.json"
+    ],
+
+    "win": {
+      "target": "nsis"
+      
+    },
+
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

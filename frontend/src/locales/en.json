@@ -1,0 +1,12 @@
+{
+  "title": "Live Meeting Assistant",
+  "start": "Start Meeting",
+  "stop": "Stop Meeting",
+  "recording": "Recording...",
+  "transcript": "Live Transcript",
+  "summary": "AI Live Summary",
+  "actions": "Live Action Items",
+  "waiting": "AI is waiting for enough conversation...",
+  "speaking": "Start speaking...",
+  "noactions": "No action items yet."
+}

@@ -1,0 +1,21 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Environment
+.env
+
+# Node
+node_modules/
+
+# React
+dist/
+build/
+
+# VS Code
+.vscode/
+
+# FAISS (optional)
+*.faiss
+*.pkl
