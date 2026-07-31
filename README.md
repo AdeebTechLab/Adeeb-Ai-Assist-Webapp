@@ -4,7 +4,7 @@ An AI-powered Meeting Assistant developed by Adeeb Technology Lab.
 
 This application helps users record meetings, upload meeting audio, generate AI summaries, extract action items, and chat with company knowledge using Retrieval-Augmented Generation (RAG).
 
----
+
 
 # Features
 
@@ -20,11 +20,11 @@ This application helps users record meetings, upload meeting audio, generate AI 
 - Text-to-Speech
 - AI Avatar Support
 
----
+
 
 # Tech Stack
 
-## Backend
+# Backend
 
 - Python
 - FastAPI
@@ -34,68 +34,127 @@ This application helps users record meetings, upload meeting audio, generate AI 
 - Sentence Transformers
 - Groq API
 
-## Frontend
+# Frontend
 
 - React
 - Vite
 - Axios
 - Tailwind CSS
 
----
 
 # Project Structure
 
 ```
-backend/
-frontend/
-electron/
-requirements.txt
-README.md
+Adeeb-Ai-Assist-Webapp
+│
+├── backend/
+├── frontend/
+├── electron/
+├── requirements.txt
+├── README.md
 ```
 
 ---
 
 # Installation
 
-## Clone Repository
+# 1. Clone Repository
 
 ```bash
 git clone https://github.com/AdeebTechLab/Adeeb-Ai-Assist-Webapp.git
+
+cd Adeeb-Ai-Assist-Webapp
 ```
 
-## Backend
+---
+
+# 2. Create Virtual Environment
 
 ```bash
-cd backend
-
 python -m venv .venv
+```
 
+---
+
+# 3. Activate Virtual Environment
+
+# Windows
+
+```bash
 .venv\Scripts\activate
+```
 
+# Linux / Mac
+
+```bash
+source .venv/bin/activate
+```
+
+---
+
+# 4. Install Backend Dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-## Frontend
+---
+
+# 5. Install Frontend Dependencies
 
 ```bash
 cd frontend
 
 npm install
+```
 
-npm run dev
+
+
+# Environment Variables
+
+Create a `.env` file in the project root.
+
+Example:
+
+```env
+GROQ_API_KEY=your_groq_api_key_here
 ```
 
 ---
 
-# Run Backend
+# Build Company Knowledge Base (First Time Only)
+
+Before using Company Chat, build the vector database.
+
+```bash
+python -m backend.rag.build_vectorstore
+```
+
+If successful, a FAISS vector store will be created inside:
+
+```
+backend/storage/
+```
+
+
+
+# Running the Project
+
+# Step 1 — Start Backend
+
+Open Terminal 1
 
 ```bash
 uvicorn backend.main:app --reload
 ```
 
----
+Backend runs on:
 
-# API Documentation
+```
+http://127.0.0.1:8000
+```
+
+Swagger Documentation:
 
 ```
 http://127.0.0.1:8000/docs
@@ -103,28 +162,138 @@ http://127.0.0.1:8000/docs
 
 ---
 
+#  Step 2 — Start Frontend
+
+Open Terminal 2
+
+```bash
+cd frontend
+
+npm run dev
+```
+
+Frontend runs on:
+
+```
+http://localhost:5173
+```
+
+Open the above URL in your browser.
+
+
+
+# How to Use the Project
+
+# Dashboard
+
+View project overview and navigate to all modules.
+
+
+
+# Upload Meeting
+
+- Upload meeting audio.
+- AI generates:
+  - Transcript
+  - Summary
+  - Action Items
+
+
+
+# Meetings
+
+View all saved meetings.
+
+Click any meeting to view:
+
+- Transcript
+- Summary
+- Action Items
+
+
+
+# Live Meeting
+
+Record a meeting in real time.
+
+The system processes the meeting and stores the results automatically.
+
+
+
+# AI Chat
+
+Ask questions about previous meetings.
+
+Example:
+
+```
+Summarize today's meeting.
+```
+
+
+
+# Company Chat (RAG)
+
+Ask company-related questions.
+
+Example:
+
+```
+Who is the CEO?
+
+Where is the head office?
+
+What services does the company provide?
+```
+
+The assistant answers only from the company knowledge base.
+
+
+
+# API Documentation
+
+After running the backend:
+
+```
+http://127.0.0.1:8000/docs
+```
+
+
+
 # Company Knowledge Base
 
-The AI Assistant uses:
+The Company Chat module uses:
 
-- Local Sentence Transformer Embeddings
+- Sentence Transformers
 - FAISS Vector Store
+- LangChain Retriever
 - Retrieval-Augmented Generation (RAG)
 - Groq Llama 3.3 70B
 
-to answer company-related questions.
 
----
+
+# Future Improvements
+
+- Authentication System
+- Multi-user Support
+- Live Meeting Translation
+- Better Voice Assistant
+- Cloud Deployment
+- PDF Meeting Reports
+
+
 
 # Developed By
 
-Aryan Khan Niazi
+* Muhammad Aryan Khan Niazi*
 
 BS Artificial Intelligence
 
-Adeeb Technology Lab Internship
+AI/ML Intern
 
----
+Adeeb Technology Lab
+
+
 
 # License
 
