@@ -285,7 +285,7 @@ The Company Chat module uses:
 
 # Developed By
 
-* Muhammad Aryan Khan Niazi*
+*Muhammad Aryan Khan Niazi*
 
 BS Artificial Intelligence
 
