@@ -1,11 +1,10 @@
-from loader import load_documents
-from splitter import split_documents
-from vector_store import (
+from backend.rag.loader import load_documents
+from backend.rag.splitter import split_documents
+from backend.rag.vector_store import (
     build_vector_store,
     save_vector_store,
 )
-
-from config import DOCUMENTS_DIR
+from backend.rag.config import DOCUMENTS_DIR
 
 
 documents = load_documents(DOCUMENTS_DIR)
@@ -16,6 +15,4 @@ db = build_vector_store(chunks)
 
 save_vector_store(db)
 
-print()
-
-print("🎉 RAG Index Ready")
+print("\n🎉 RAG Index Ready")

@@ -1,15 +1,7 @@
-from pathlib import Path
-
 from langchain_community.vectorstores import FAISS
 
 from backend.rag.embedding import LocalEmbeddings
-
-
-from pathlib import Path
-
-BASE_DIR = Path(__file__).resolve().parent
-
-VECTOR_PATH = BASE_DIR / "vectorstore"
+from backend.rag.config import VECTOR_DB_DIR
 
 
 def build_vector_store(chunks):
@@ -24,8 +16,7 @@ def build_vector_store(chunks):
 
 
 def save_vector_store(db):
-    db.save_local(str(VECTOR_PATH))
-
+    db.save_local(str(VECTOR_DB_DIR))
     print("✅ Vector Store Saved")
 
 
@@ -33,7 +24,7 @@ def load_vector_store():
     embeddings = LocalEmbeddings()
 
     db = FAISS.load_local(
-        str(VECTOR_PATH),
+        str(VECTOR_DB_DIR),
         embeddings,
         allow_dangerous_deserialization=True,
     )

@@ -1,7 +1,10 @@
 export function speak(text, language = "en-US") {
-  if (!window.speechSynthesis || !text) return;
+  if (!("speechSynthesis" in window) || !text) return;
 
-  window.speechSynthesis.cancel();
+  // Stop previous speech only if speaking
+  if (window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel();
+  }
 
   const utterance = new SpeechSynthesisUtterance(text);
 
@@ -12,13 +15,27 @@ export function speak(text, language = "en-US") {
 
   const voices = window.speechSynthesis.getVoices();
 
-  const voice = voices.find(v =>
-    v.lang.toLowerCase().startsWith(language.toLowerCase().split("-")[0])
-  );
+  if (voices.length > 0) {
+    const voice = voices.find(
+      (v) => v.lang.toLowerCase().startsWith(language.split("-")[0].toLowerCase())
+    );
 
-  if (voice) {
-    utterance.voice = voice;
+    if (voice) {
+      utterance.voice = voice;
+    }
   }
+
+  utterance.onstart = () => {
+    console.log("🔊 Speech Started");
+  };
+
+  utterance.onend = () => {
+    console.log("✅ Speech Finished");
+  };
+
+  utterance.onerror = (e) => {
+    console.error("❌ Speech Error:", e);
+  };
 
   window.speechSynthesis.speak(utterance);
 }
